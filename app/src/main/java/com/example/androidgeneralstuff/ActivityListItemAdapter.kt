@@ -20,18 +20,20 @@ class ActivityListItemAdapter(private val dataset: List<MainActivity.ActivityMen
 
     override fun getItemCount() = dataset.size
 
-    class ViewHolder(val v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
+    class ViewHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
         private var view: View = v
+        private var menuItem: MainActivity.ActivityMenu? = null
 
         init {
             v.setOnClickListener(this)
         }
 
         override fun onClick(v: View) {
-            Log.d("ActivityListItemAdapter", "Click!")
+            Log.d("ActivityListItemAdapter", "Click on: ${this.menuItem?.title}")
         }
 
         fun bindActivityItem(menuItem: MainActivity.ActivityMenu) {
+            this.menuItem = menuItem
             view.title.text = menuItem.title
             view.description.text = menuItem.description
         }
